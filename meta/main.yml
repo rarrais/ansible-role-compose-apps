@@ -1,0 +1,18 @@
+galaxy_info:
+  role_name: compose-apps
+  author: rarrais
+  description: Configure container-based applications using compose.
+
+  license: Unlicensed
+
+  min_ansible_version: 2.1
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - jammy
+
+  galaxy_tags: []
+
+dependencies: 
+  - geerlingguy.docker

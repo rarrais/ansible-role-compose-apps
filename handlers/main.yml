@@ -1,0 +1,5 @@
+---
+- name: Reboot.
+  reboot:
+  when:
+    - compose_configure_reboot

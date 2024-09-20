@@ -1,0 +1,13 @@
+---
+
+- name: Extract unique path/file from the variable.
+  ansible.builtin.set_fact:
+    unique_paths: "{{ compose_variable | map(attribute='path') | zip(compose_variable | map(attribute='file')) | map('join', '/') | list | unique }}"
+
+- name: Set system-wide {{ environment_variable }} environment variable.
+  ansible.builtin.lineinfile:
+    path: /etc/environment
+    regexp: '^{{ environment_variable }}='
+    line: '{{ environment_variable }}={{ unique_paths | join(separator) }}'
+    create: yes
+  notify: "Reboot"

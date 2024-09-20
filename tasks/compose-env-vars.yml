@@ -1,0 +1,14 @@
+---
+
+- name: Create {{ item.path }}, if needed.
+  block:
+    - name: Configure {{ item.name }} environment variable in the {{ item.path }}/{{ item.file }} file.
+      ansible.builtin.lineinfile:
+        path: "{{ item.path }}/{{ item.file }}"
+        regexp: '^{{ item.name }}='
+        line: '{{ item.name }}={{ item.value }}'
+        owner: "{{ container_user }}"
+        group: "{{ container_group }}"
+        create: yes
+  tags:
+    - compose-env-vars

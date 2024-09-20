@@ -1,0 +1,21 @@
+---
+
+- name: Place compose file at {{ item.path }}.
+  block:
+    - name: Ensure {{ item.path }} directory exists.
+      include_tasks: compose-directories.yml
+      loop: "{{ lookup('list', item, wantlist=True) }}"
+      loop_control:
+        loop_var: i
+
+    - name: Copy {{ item.file }} to {{ item.path }}.
+      ansible.builtin.copy:
+        src: "{{ item.src }}"
+        dest: "{{ item.path }}/{{ item.file }}"
+        owner: "{{ item.owner }}"
+        group: "{{ item.group }}"
+        mode: 0644
+  tags:
+    - compose-files
+
+

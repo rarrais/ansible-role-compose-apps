@@ -1,0 +1,37 @@
+---
+
+- name: Create compose apps directories, if needed.
+  include_tasks: compose-directories.yml
+  loop: "{{ compose_apps_directories }}"
+  when: compose_apps_directories is defined
+
+- name: Configure environment variables for compose, if needed.
+  include_tasks: compose-env-vars.yml
+  loop: "{{ compose_apps_env_vars }}"
+  when: compose_apps_env_vars is defined
+
+- name: Define COMPOSE_ENV_FILES environment variable, if needed.
+  include_tasks: set-env-vars.yml
+  vars:
+    compose_variable: "{{ compose_apps_env_vars }}"
+    environment_variable: "COMPOSE_ENV_FILES"
+    separator: ","
+  when: compose_apps_env_vars is defined and set_compose_env_vars
+
+- name: Place compose files in position, if needed.
+  include_tasks: compose-files.yml
+  loop: "{{ compose_apps_files }}"
+  when: compose_apps_files is defined
+
+- name: Define COMPOSE_FILE environment variable, if needed.
+  include_tasks: set-env-vars.yml
+  vars:
+    compose_variable: "{{ compose_apps_files }}"
+    environment_variable: "COMPOSE_FILE"
+    separator: ":"
+  when: compose_apps_files is defined and set_compose_env_vars
+
+- name: Copy compose apps configuration files, if needed.
+  include_tasks: configuration-files.yml
+  loop: "{{ compose_apps_configuration_files }}"
+  when: compose_apps_configuration_files is defined

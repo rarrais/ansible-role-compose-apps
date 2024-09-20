@@ -1,0 +1,24 @@
+---
+
+compose_configure_reboot: true
+
+container_user: "docker"
+container_group: "docker"
+
+set_compose_env_vars: true
+
+# Example compose apps directories (optional):
+# compose_apps_directories:
+#   - { path: "/opt/appdata/test/config", owner: "{{ container_user }}", group: "{{ container_group }}", mode: "0775" }
+
+# Example compose apps environment variables (optional):
+# compose_apps_env_vars:
+#   - { path: "/opt/compose/.env", name: "TZ", value: "Europe/Lisbon"}
+
+# Example compose app files (optional):
+# compose_apps_files:
+#   - { path: "/opt/compose/example", file: "compose.yml", src: "../compose/example/compose.yml", owner: "{{ container_user }}", group: "{{ container_group }}", mode: "0664" }
+
+# Example compose app configuration files (optional):
+# compose_apps_configuration_files:
+#   - { path: "/opt/appdata/example/config", file: "file.yml", src: "../compose/example/file.yml", owner: "{{ container_user }}", group: "{{ container_group }}", mode: "0775", template: false }
