@@ -1,0 +1,11 @@
+---
+
+- name: Log in to {{ item.registry_url }} Container Registry.
+  block:
+    - name: Log in to {{ item.registry_url }} Container Registry.
+      community.docker.docker_login:
+        registry_url: "{{ item.registry_url }}"
+        username: "{{ item.username }}"
+        password: "{{ item.password }}"
+  tags:
+    - container-registry-login

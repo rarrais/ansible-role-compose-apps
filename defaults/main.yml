@@ -7,6 +7,8 @@ container_group: "docker"
 
 set_compose_env_vars: true
 
+container_registry_url: "https://index.docker.io/v1/"
+
 # Example compose apps directories (optional):
 # compose_apps_directories:
 #   - { path: "/opt/appdata/test/config", owner: "{{ container_user }}", group: "{{ container_group }}", mode: "0775" }
@@ -22,3 +24,7 @@ set_compose_env_vars: true
 # Example compose app configuration files (optional):
 # compose_apps_configuration_files:
 #   - { path: "/opt/appdata/example/config", file: "file.yml", src: "../compose/example/file.yml", owner: "{{ container_user }}", group: "{{ container_group }}", mode: "0775", template: false }
+
+# Example container registry login configuration (optional):
+# container_registry_configuration:
+#   - { registry_url: "https://index.docker.io/v1/", username: "user", password: "SECRET"}
