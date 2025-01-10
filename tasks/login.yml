@@ -5,7 +5,9 @@
     - name: Log in to {{ item.registry_url }} Container Registry.
       community.docker.docker_login:
         registry_url: "{{ item.registry_url }}"
-        username: "{{ item.username }}"
-        password: "{{ item.password }}"
+        username: "{{ item.registry_username }}"
+        password: "{{ item.registry_password }}"
+      become: true
+      become_user: "{{ item.user }}"
   tags:
     - container-registry-login

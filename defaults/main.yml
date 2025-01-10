@@ -27,4 +27,4 @@ container_registry_url: "https://index.docker.io/v1/"
 
 # Example container registry login configuration (optional):
 # container_registry_configuration:
-#   - { registry_url: "https://index.docker.io/v1/", username: "user", password: "SECRET"}
+#   - { registry_url: "https://index.docker.io/v1/", registry_username: "user", registry_password: "SECRET", user: "root"}
