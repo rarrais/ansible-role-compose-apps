@@ -1,0 +1,15 @@
+---
+
+- name: Setup {{ item.name }} cron job.
+  block:
+    - name: Setup {{ item.name }} cron job.
+      ansible.builtin.cron:
+        name: "{{ item.name }}"
+        month: "{{ item.month }}"
+        weekday: "{{ item.weekday }}"
+        day: "{{ item.day }}"
+        hour: "{{ item.hour }}"
+        minute: "{{ item.minute }}"
+        job: "{{ item.job }}"
+  tags:
+    - cron
