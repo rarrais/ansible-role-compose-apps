@@ -6,7 +6,7 @@
       ansible.builtin.lineinfile:
         path: "{{ item.path }}/{{ item.file }}"
         regexp: '^{{ item.name }}='
-        line: '{{ item.name }}={{ item.value }}'
+        line: '{{ item.name }}={{ item.value | regex_replace("\$", "$$") }}'
         owner: "{{ container_user }}"
         group: "{{ container_group }}"
         create: yes
